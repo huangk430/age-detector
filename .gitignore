@@ -1,4 +1,6 @@
 dataset/*
 ./ipynb_checkpoints/
+.venv
+.vscode
 
 !dataset/.gitkeep

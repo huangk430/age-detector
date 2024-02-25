@@ -3,8 +3,8 @@ from data_augmentation import augment_data
 
 
 def main():
-    wiki_df, imdb_df = load_dataset()
-    augment_data(wiki_df, imdb_df)
+    wiki_df = load_dataset()
+    augmented_wiki_df = augment_data(wiki_df)
     
 
 
