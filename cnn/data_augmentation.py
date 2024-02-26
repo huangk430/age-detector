@@ -1,8 +1,22 @@
 import pandas as pd
+from keras_preprocessing.image import ImageDataGenerator
 
 
-def augment_data(wiki_df):
-    balanced_wiki_df = balance_genders(wiki_df)
+#TODO: augment images before passing to model
+
+
+def augment_data(df):
+
+    balanced_wiki_df = balance_genders(df)
+
+    X = df.drop('Age', axis=1)
+    y = df['Age']
+
+    X_train, X_test, y_train, y_test = pd.train_test_split(X, y, test_size=0.2, random_state=42)
+
+
+
+
     
 
 def balance_genders(df) -> pd.DataFrame:
