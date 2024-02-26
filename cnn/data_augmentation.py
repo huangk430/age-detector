@@ -1,23 +1,43 @@
 import pandas as pd
-from keras_preprocessing.image import ImageDataGenerator
+from keras.preprocessing.image import ImageDataGenerator, DataFrameIterator
 
 
-#TODO: augment images before passing to model
+def augment_data(train_df, val_df) -> tuple[DataFrameIterator, DataFrameIterator]:
 
+    train_datagen=ImageDataGenerator(
+        rescale=1./255.,
+        rotation_range=25,
+        brightness_range=[0.7,1.3],
+        zoom_range=0.5,
+        horizontal_flip=True
+    )    
 
-def augment_data(df):
+    valid_datagen = ImageDataGenerator(rescale=1./255.) 
 
-    balanced_wiki_df = balance_genders(df)
+    train_generator = train_datagen.flow_from_dataframe(
+        dataframe=train_df,
+        directory='/content/wiki_crop',
+        x_col="path",
+        y_col="age",
+        batch_size=64,
+        seed=42,
+        shuffle=True,
+        class_mode="raw",
+        target_size=(180,180))
 
-    X = df.drop('Age', axis=1)
-    y = df['Age']
-
-    X_train, X_test, y_train, y_test = pd.train_test_split(X, y, test_size=0.2, random_state=42)
-
-
-
-
+    val_generator=valid_datagen.flow_from_dataframe(
+        dataframe=val_df,
+        directory="/content/wiki_crop",
+        x_col="path",
+        y_col="age",
+        batch_size=64,
+        seed=42,
+        shuffle=True,
+        class_mode="raw",
+        target_size=(180,180))
     
+    return (train_generator, val_generator)
+
 
 def balance_genders(df) -> pd.DataFrame:
 
@@ -48,4 +68,7 @@ def balance_genders(df) -> pd.DataFrame:
         # Combine the balanced samples
         balanced_samples.extend([male_sample, female_sample])
 
-    return pd.concat(balanced_samples)
+    df = pd.concat(balanced_samples)
+    df = df.drop(columns=['age_group'])
+
+    return df
