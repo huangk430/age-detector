@@ -57,5 +57,15 @@ def cnn():
 
     # plot_model(model)
 
-    
+    STEP_SIZE_TRAIN=460
+    STEP_SIZE_VALID=460
+
+    history = model.fit_generator(
+        generator=train_generator,
+        steps_per_epoch=STEP_SIZE_TRAIN, 
+        validation_data=valid_generator,
+        validation_steps=STEP_SIZE_VALID, 
+        callbacks=callbacks_list, epochs=45
+    )
+  
 
