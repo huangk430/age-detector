@@ -1,8 +1,8 @@
 import pandas as pd
-from keras.preprocessing.image import ImageDataGenerator, DataFrameIterator
+from keras.preprocessing.image import ImageDataGenerator
 
 
-def augment_data(train_df, val_df) -> tuple[DataFrameIterator, DataFrameIterator]:
+def augment_data(train_df, val_df):
 
     train_datagen=ImageDataGenerator(
         rescale=1./255.,
@@ -16,25 +16,27 @@ def augment_data(train_df, val_df) -> tuple[DataFrameIterator, DataFrameIterator
 
     train_generator = train_datagen.flow_from_dataframe(
         dataframe=train_df,
-        directory='/content/wiki_crop',
-        x_col="path",
-        y_col="age",
+        directory='dataset/wiki_crop',
+        x_col="Image Path",
+        y_col="Age",
         batch_size=64,
         seed=42,
         shuffle=True,
         class_mode="raw",
-        target_size=(180,180))
+        target_size=(180,180)
+    )
 
     val_generator=valid_datagen.flow_from_dataframe(
         dataframe=val_df,
-        directory="/content/wiki_crop",
-        x_col="path",
-        y_col="age",
+        directory="dataset/wiki_crop",
+        x_col="Image Path",
+        y_col="Age",
         batch_size=64,
         seed=42,
         shuffle=True,
         class_mode="raw",
-        target_size=(180,180))
+        target_size=(180,180)
+    )
     
     return (train_generator, val_generator)
 
