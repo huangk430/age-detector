@@ -1,5 +1,6 @@
 import pandas as pd
 
+from model import cnn
 from load_dataset import load_dataset
 from data_augmentation import augment_data, balance_genders
 from sklearn.model_selection import train_test_split
@@ -21,7 +22,9 @@ def main():
 
     train_generator, val_generator = augment_data(train_df=X_train, val_df=X_val)
 
-    
+    cnn(train_generator, val_generator)
+
+
 
 
 if __name__ == "__main__":

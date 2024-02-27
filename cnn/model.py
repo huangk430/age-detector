@@ -8,11 +8,11 @@ from keras.layers import (
     Flatten,
     Dense,
     Dropout,
-    Model
 )
+from keras.models import Model
 
 
-def cnn():
+def cnn(train_generator, val_generator):
     input_shape = (180, 180, 3)
     inputs = Input(shape=input_shape)
 
@@ -52,20 +52,21 @@ def cnn():
     model.compile(
         loss=["mse"],
         optimizer="adam",
-        metrics=["accuracy"]
+        metrics=["mae", "mse"]
     )
 
     # plot_model(model)
 
-    STEP_SIZE_TRAIN=460
-    STEP_SIZE_VALID=460
+    STEP_SIZE_TRAIN=15536/64 # TODO: replace these with variables later
+    STEP_SIZE_VALID=1942/64
 
     history = model.fit_generator(
         generator=train_generator,
         steps_per_epoch=STEP_SIZE_TRAIN, 
-        validation_data=valid_generator,
+        validation_data=val_generator,
         validation_steps=STEP_SIZE_VALID, 
-        callbacks=callbacks_list, epochs=45
+        epochs=45
     )
-  
 
+    with open("model-output.txt") as f:
+        f.write(history)
