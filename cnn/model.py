@@ -10,6 +10,11 @@ from keras.layers import (
     Dropout,
 )
 from keras.models import Model
+from keras.callbacks import CSVLogger, EarlyStopping
+
+
+V1_MODEL_TRAINING_HISTORY_PATH = "cnn/model-versions/v1/model-training-history.csv"
+V1_MODEL_PATH = "cnn/model-versions/v1/"
 
 
 def cnn(train_generator, val_generator):
@@ -55,18 +60,26 @@ def cnn(train_generator, val_generator):
         metrics=["mae", "mse"]
     )
 
-    # plot_model(model)
+    training_step_size = train_generator.n / train_generator.batch_size
+    validation_step_size = val_generator.n / val_generator.batch_size
 
-    STEP_SIZE_TRAIN=15536/64 # TODO: replace these with variables later
-    STEP_SIZE_VALID=1942/64
+    csv_logger = CSVLogger(V1_MODEL_TRAINING_HISTORY_PATH)
 
-    history = model.fit_generator(
-        generator=train_generator,
-        steps_per_epoch=STEP_SIZE_TRAIN, 
-        validation_data=val_generator,
-        validation_steps=STEP_SIZE_VALID, 
-        epochs=45
+    early_stopping = EarlyStopping(
+        monitor="val_loss",
+        patience=5,
+        restore_best_weights=True
     )
 
-    with open("model-output.txt") as f:
-        f.write(history)
+    training_history = model.fit_generator(
+        generator=train_generator,
+        steps_per_epoch=training_step_size, 
+        validation_data=val_generator,
+        validation_steps=validation_step_size, 
+        epochs=50,
+        callbacks=[csv_logger, early_stopping]
+    )
+
+    print(training_history)
+
+    model.save(V1_MODEL_PATH)
