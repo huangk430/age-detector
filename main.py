@@ -1,3 +1,5 @@
+import tensorflow as tf
+
 from fastapi import FastAPI, File, UploadFile
 
 
@@ -10,8 +12,12 @@ async def health_check():
 
 
 @app.post("/predict-age")
-async def predict_age(image: UploadFile = File(...)):
-    contents = await image.read()       
+async def predict_age(file: UploadFile = File(...)):
+    # contents = await image.read()
+    v1_model_path = "cnn/model-versions/v1/saved_model.pb"
+    v1_model = tf.saved_model.load(v1_model_path)
+    output = model(file)
+
     
     return {"filename": image.filename}
 
