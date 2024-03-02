@@ -2,7 +2,7 @@ dataset/*
 ./ipynb_checkpoints/
 .venv
 .vscode
-cnn/model-versions/*
-!cnn/model-versions/v1/model-training-history.csv
+cnn/model_versions/v1/*
+!cnn/model_versions/v1/model-training-history.csv
 
 !dataset/.gitkeep
