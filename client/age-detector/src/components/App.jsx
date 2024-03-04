@@ -1,57 +1,61 @@
 import React, { useState } from 'react';
 import TypingText from './TypingText';
+import Dropzone from './Dropzone';
 import { predictAge } from '../services/apiService';
 
 import '../styling/App.css'; // Import CSS file for styling
 import '../styling/TypingText.css'; // Import CSS file for styling
 
-
 const App = () => {
   const [textDisplayed, setTextDisplayed] = useState(false);
-  const [predictedAge, setPredictedAge] = useState(null);
-  const [text, setText] = useState("Welcome to our age detector")
-  const [flag, setFlag] = useState(true)
+  const [text, setText] = useState("Welcome to Age-I");
+  const [flag, setFlag] = useState(true);
 
   const handleTextDisplayComplete = () => {
     if (flag) {
-      setTimeout(async () => {
-        setText("Upload your face")
-        setTimeout(async () => {
+      setTimeout(() => {
+        setText("Upload a face");
+        setTimeout(() => {
           setTextDisplayed(true);
-        }, 1500)
-      }, 2000);
-    } 
-    setFlag(false)
+        }, 1500);
+      }, 1800);
+    }
+    setFlag(false);
   };
 
-  const handleImageUpload = async (e) => {
-    setText("Scanning wrinkles...");
+  const handleImageUpload = (filename) => {
+    setText("Scanning for wrinkles...");
+    
+    setTimeout(() => {
+      setText("Hmm...");
+    }, 2200);
 
     try {
       setTimeout(async () => {
-        // setText("You look fucking stupid...")
-        const response = await predictAge(e.target.files[0]);
-        setText(`You look like you are about ${response.predicted_age} years old`)
-      }, 3000);
+        const response = await predictAge(filename);
+        setText(`You look like you are about ${response.predicted_age} years old`);
         
+        setTimeout(() => {
+          setText("Want to try again?");
+          setTextDisplayed(false); // Reset textDisplayed state to allow user to upload again
+          setFlag(true); // Reset flag to restart the text display sequence
+        }, 10000); // Wait 10 seconds before asking to try again
+      }, 3000);
     } catch (error) {
       console.error('Error predicting age: ', error);
     }
-  }
+  };
+
 
   return (
     <div className="App">
       <div className="content-container">
-        <TypingText text={text} key={text} onTypingComplete={handleTextDisplayComplete} />
-        {textDisplayed && (
-          <input
-            type="file"
-            accept=".jpg"
-            className="image-dropzone"
-            onChange={handleImageUpload}
-          />
-        )}
+        <div className="typing-dropzone-container">
+          <TypingText text={text} key={text} onTypingComplete={handleTextDisplayComplete} />
+          {textDisplayed && <Dropzone onImageUpload={handleImageUpload} />}
+        </div>
       </div>
+      {text === "Want to try again?" }
     </div>
   );
 };

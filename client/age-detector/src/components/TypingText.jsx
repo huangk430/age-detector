@@ -13,7 +13,7 @@ const TypingText = ({ text, onTypingComplete }) => {
         clearInterval(interval);
         onTypingComplete(); // Call the callback when typing is complete
       }
-    }, 60); // Adjust typing speed here (milliseconds per character)
+    }, 57); // Adjust typing speed here (milliseconds per character)
 
     return () => clearInterval(interval);
   }, [currentIndex, text, onTypingComplete]);
