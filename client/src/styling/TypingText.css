@@ -1,0 +1,27 @@
+.typing-text-container {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .typing-text {
+    display: inline-block;
+    font-family: 'Ubuntu Mono', monospace; /* Set font family */
+  }
+  
+  .cursor {
+    display: inline-block;
+    width: 0.2em; /* Adjust cursor width */
+    height: 1em; /* Adjust cursor height */
+    background-color: black; /* Adjust cursor color */
+    animation: blink-animation 1s infinite;
+  }
+  
+  @keyframes blink-animation {
+    50% {
+      opacity: 0;
+    }
+  }
+  
