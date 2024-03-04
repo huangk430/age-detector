@@ -30,9 +30,10 @@ const App = () => {
     try {
       setTimeout(async () => {
         // setText("You look fucking stupid...")
-        const predictedAge = await predictAge(e.target.files[0]);
-        setPredictedAge(predictedAge);
+        const response = await predictAge(e.target.files[0]);
+        setText(`You look like you are about ${response.predicted_age} years old`)
       }, 3000);
+        
     } catch (error) {
       console.error('Error predicting age: ', error);
     }
