@@ -1,8 +1,0 @@
-dataset/*
-./ipynb_checkpoints/
-.venv
-.vscode
-cnn/model_versions/v1/*
-!cnn/model_versions/v1/model-training-history.csv
-
-!dataset/.gitkeep
