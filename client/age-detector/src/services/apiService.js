@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const API_BASE_URL = 'http://localhost:4000';
+const API_BASE_URL = 'http://localhost:8000';
 
 
 const apiService = axios.create({
@@ -20,6 +20,6 @@ export const predictAge = async (image) => {
     });
     return response.data;
   } catch (err) {
-    console.error('Error uploading image:', err)
+    console.error('Error analyzing image:', err)
   }
 };

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import TypingText from './TypingText';
+import { predictAge } from '../services/apiService';
 
 import '../styling/App.css'; // Import CSS file for styling
 import '../styling/TypingText.css'; // Import CSS file for styling
+
 
 const App = () => {
   const [textDisplayed, setTextDisplayed] = useState(false);
@@ -22,15 +24,14 @@ const App = () => {
     setFlag(false)
   };
 
-  const handleImageUpload = async (image) => {
+  const handleImageUpload = async (e) => {
     setText("Scanning wrinkles...");
 
     try {
       setTimeout(async () => {
-        setText("You look fucking stupid...")
-        // const predictedAge = await predictAge(image);
-        // setPredictedAge(predictedAge);
-        // setProcessing(false); // Set processing state back to false once API request is complete
+        // setText("You look fucking stupid...")
+        const predictedAge = await predictAge(e.target.files[0]);
+        setPredictedAge(predictedAge);
       }, 3000);
     } catch (error) {
       console.error('Error predicting age: ', error);
