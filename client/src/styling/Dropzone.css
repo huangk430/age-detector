@@ -1,0 +1,66 @@
+.dropzone {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content : center;
+    padding: 20px;
+    margin-top: 4rem;
+    border-width: 1px;
+    border-radius: 1px;
+    border-style: dashed;
+    background-color: #ffffff;
+    color: #bdbdbd;
+    outline: none;  
+    transition: border 0.24s ease-in-out;
+    cursor: pointer;
+    top: 50%; /* Adjust as needed */
+    left: 50%; /* Adjust as needed */
+  }
+  
+  .active-dropzone {
+    border-color: #00adb5;
+  }
+  
+  .dropzone-text {
+    margin: 0;
+    font-family: 'Ubuntu Mono', monospace; /* Set font family */
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .image-preview {
+    display: flex;
+    justify-content : center;
+    max-width: 300px;
+    max-height: 300px;
+    margin: auto;
+    border-radius: 2px;
+    margin-top: auto;
+  }
+  
+  .file-name {
+    display: flex;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0; /* Optional: Remove default padding */
+    margin: 0; /* Optional: Remove default margin */
+  }
+
+  .image-container {
+    position: absolute;
+    top: 50%; /* Adjust as needed */
+    left: 50%; /* Adjust as needed */
+    transform: translate(-50%, -50%);
+    margin-top: 9.5rem;
+  }
+
+  .dropzone-container {
+    position: relative;
+  }
+  
+  
