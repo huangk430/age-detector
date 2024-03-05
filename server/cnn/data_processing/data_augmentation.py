@@ -16,7 +16,7 @@ def augment_data(train_df, val_df):
 
     train_generator = train_datagen.flow_from_dataframe(
         dataframe=train_df,
-        directory='dataset/wiki_crop',
+        directory='server/dataset/wiki_crop',
         x_col="Image Path",
         y_col="Age",
         batch_size=64,
@@ -28,7 +28,7 @@ def augment_data(train_df, val_df):
 
     val_generator=valid_datagen.flow_from_dataframe(
         dataframe=val_df,
-        directory="dataset/wiki_crop",
+        directory="server/dataset/wiki_crop",
         x_col="Image Path",
         y_col="Age",
         batch_size=64,

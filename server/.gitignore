@@ -1,7 +1,10 @@
 dataset/*
+
 cnn/model_versions/v1/*
+cnn/model_versions/v2/age-i-model-v2.h5
+
+.ipynb_checkpoints/model_visualization-checkpoint.ipynb
+
 !cnn/model_versions/v1/model-training-history.csv
 !cnn/model_versions/v1/test_results.csv
-
 !dataset/.gitkeep
-.ipynb_checkpoints/model_visualization-checkpoint.ipynb
