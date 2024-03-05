@@ -1,0 +1,113 @@
+Model: "model"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_1 (InputLayer)        [(None, 180, 180, 3)]     0         
+                                                                 
+ separable_conv2d (Separabl  (None, 180, 180, 64)      283       
+ eConv2D)                                                        
+                                                                 
+ activation (Activation)     (None, 180, 180, 64)      0         
+                                                                 
+ max_pooling2d (MaxPooling2  (None, 90, 90, 64)        0         
+ D)                                                              
+                                                                 
+ batch_normalization (Batch  (None, 90, 90, 64)        256       
+ Normalization)                                                  
+                                                                 
+ separable_conv2d_1 (Separa  (None, 90, 90, 128)       8896      
+ bleConv2D)                                                      
+                                                                 
+ activation_1 (Activation)   (None, 90, 90, 128)       0         
+                                                                 
+ max_pooling2d_1 (MaxPoolin  (None, 45, 45, 128)       0         
+ g2D)                                                            
+                                                                 
+ batch_normalization_1 (Bat  (None, 45, 45, 128)       512       
+ chNormalization)                                                
+                                                                 
+ separable_conv2d_2 (Separa  (None, 45, 45, 256)       34176     
+ bleConv2D)                                                      
+                                                                 
+ activation_2 (Activation)   (None, 45, 45, 256)       0         
+                                                                 
+ max_pooling2d_2 (MaxPoolin  (None, 22, 22, 256)       0         
+ g2D)                                                            
+                                                                 
+ spatial_dropout2d (Spatial  (None, 22, 22, 256)       0         
+ Dropout2D)                                                      
+                                                                 
+ batch_normalization_2 (Bat  (None, 22, 22, 256)       1024      
+ chNormalization)                                                
+                                                                 
+ separable_conv2d_3 (Separa  (None, 22, 22, 512)       133888    
+ bleConv2D)                                                      
+                                                                 
+ activation_3 (Activation)   (None, 22, 22, 512)       0         
+                                                                 
+ max_pooling2d_3 (MaxPoolin  (None, 11, 11, 512)       0         
+ g2D)                                                            
+                                                                 
+ batch_normalization_3 (Bat  (None, 11, 11, 512)       2048      
+ chNormalization)                                                
+                                                                 
+ separable_conv2d_4 (Separa  (None, 11, 11, 512)       267264    
+ bleConv2D)                                                      
+                                                                 
+ activation_4 (Activation)   (None, 11, 11, 512)       0         
+                                                                 
+ max_pooling2d_4 (MaxPoolin  (None, 5, 5, 512)         0         
+ g2D)                                                            
+                                                                 
+ batch_normalization_4 (Bat  (None, 5, 5, 512)         2048      
+ chNormalization)                                                
+                                                                 
+ flatten (Flatten)           (None, 12800)             0         
+                                                                 
+ dropout (Dropout)           (None, 12800)             0         
+                                                                 
+ dense (Dense)               (None, 512)               6554112   
+                                                                 
+ activation_5 (Activation)   (None, 512)               0         
+                                                                 
+ dropout_1 (Dropout)         (None, 512)               0         
+                                                                 
+ batch_normalization_5 (Bat  (None, 512)               2048      
+ chNormalization)                                                
+                                                                 
+ dense_1 (Dense)             (None, 256)               131328    
+                                                                 
+ activation_6 (Activation)   (None, 256)               0         
+                                                                 
+ dropout_2 (Dropout)         (None, 256)               0         
+                                                                 
+ batch_normalization_6 (Bat  (None, 256)               1024      
+ chNormalization)                                                
+                                                                 
+ dense_2 (Dense)             (None, 128)               32896     
+                                                                 
+ activation_7 (Activation)   (None, 128)               0         
+                                                                 
+ dropout_3 (Dropout)         (None, 128)               0         
+                                                                 
+ batch_normalization_7 (Bat  (None, 128)               512       
+ chNormalization)                                                
+                                                                 
+ dense_3 (Dense)             (None, 64)                8256      
+                                                                 
+ activation_8 (Activation)   (None, 64)                0         
+                                                                 
+ dropout_4 (Dropout)         (None, 64)                0         
+                                                                 
+ batch_normalization_8 (Bat  (None, 64)                256       
+ chNormalization)                                                
+                                                                 
+ dense_4 (Dense)             (None, 1)                 65        
+                                                                 
+ activation_9 (Activation)   (None, 1)                 0         
+                                                                 
+=================================================================
+Total params: 7180892 (27.39 MB)
+Trainable params: 7176028 (27.37 MB)
+Non-trainable params: 4864 (19.00 KB)
+_________________________________________________________________

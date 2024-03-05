@@ -7,7 +7,7 @@ from IPython.display import display
 
 def load_dataset() -> pd.DataFrame:
     
-    wiki_mat_path = "dataset/wiki_crop/wiki.mat"
+    wiki_mat_path = "server/dataset/wiki_crop/wiki.mat"
 
     wiki_mat = sio.loadmat(wiki_mat_path)
 
