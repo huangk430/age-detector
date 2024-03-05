@@ -30,7 +30,7 @@ async def predict_age(file: UploadFile = File(...)):
         with NamedTemporaryFile(delete=False) as temp_file:
             shutil.copyfileobj(file.file, temp_file)
 
-            model = tf.saved_model.load("cnn/model_versions/v1")
+            model = tf.saved_model.load("server/cnn/model_versions/v1")
             img = image.load_img(temp_file.name, target_size=(180, 180))
             img_ary = image.img_to_array(img)
             img_ary = np.expand_dims(img_ary, axis=0)
