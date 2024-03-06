@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TypingText from './TypingText';
 import Dropzone from './Dropzone';
 import { predictAge } from '../services/apiService';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 import '../styling/App.css'; // Import CSS file for styling
 import '../styling/TypingText.css'; // Import CSS file for styling
@@ -46,7 +47,6 @@ const App = () => {
     }
   };
 
-
   return (
     <div className="App">
       <div className="content-container">
@@ -55,7 +55,11 @@ const App = () => {
           {textDisplayed && <Dropzone onImageUpload={handleImageUpload} />}
         </div>
       </div>
-      {text === "Want to try again?" }
+      <footer className="footer">
+        <a href="https://github.com/huangk430/age-detector" target="_blank" rel="noopener noreferrer">
+          <GitHubIcon />
+        </a>
+      </footer>
     </div>
   );
 };
