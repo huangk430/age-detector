@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const API_BASE_URL = 'https://age-i-kelly-huang.koyeb.app/';
+const API_BASE_URL = 'https://age-detector-fy76.onrender.com/';
 
 
 const apiService = axios.create({
